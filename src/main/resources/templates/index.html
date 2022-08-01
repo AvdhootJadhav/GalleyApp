@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>PhotosUp</title>
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width" />
+  <base href="/">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+</head>
+
+<style>
+  #special-box {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    row-gap: 50px;
+    margin-bottom: 20px;
+  }
+</style>
+
+<body>
+
+  <div class="container">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-bottom: 20px">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">PhotosUp</a>
+        <a class="btn btn-primary btn-success" style="margin-right: 20px; padding-left: 5px;" th:href="@{'/new'}"><i
+            class="bi-plus-lg">New</i></a>
+      </div>
+    </nav>
+    <h3>Images</h3>
+
+    <div id="special-box">
+      <div class="card" style="width: 20rem;" th:each="img:${listOfImages}">
+        <img th:src="${img.imgUrl}" class="card-img-top" alt="..." height="240px">
+        <div class="card-body">
+          <h5 class="card-title" th:text="${img.imgName}">name</h5>
+          <p class="card-text text-truncate" th:text="${img.imgDetails}">details</p>
+          <a th:href="@{'/show/'+${img.id}}" class="btn btn-primary">View</a>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="d-flex justify-content-between my-3">
+      <div th:if="${currentPage+1 <= totalPages}">
+        <a class="btn btn-outline-primary" th:href="@{'/page/'+${currentPage+1}}">Next</a>
+      </div>
+      <div th:if="${currentPage-1 >= 1}">
+        <a class="btn btn-outline-primary" th:href="@{'/page/'+${currentPage-1}}">Prev</a>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
