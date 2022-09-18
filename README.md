@@ -7,6 +7,7 @@ The website is hosted on heroku for live use by anyone.
 ```bash
 https://photosup.herokuapp.com
 ```
+PS: If site is not working then its because I am using Heroku free tier account so it will automatically put my website on sleep
 
 # Screenhots of the project
 
